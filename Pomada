@@ -1,0 +1,66 @@
+#def hexer(col):
+#    a = int(col[0], base = 16)*16+int(col[1], base = 16)
+#    b = int(col[2], base = 16) * 16 + int(col[3], base = 16)
+#    c = int(col[4], base = 16) * 16 + int(col[5], base = 16)
+#    ss = []
+#    ss.append(a)
+#    ss.append(b)
+#    ss.append(c)
+#    return ss
+
+#s = input()
+#print(hexer(s))
+
+
+n=int(input())
+a=[]
+d={}
+for i in range(n):
+    b=input().split()
+    d[i]=b[0]
+    a.append(b[1:])
+
+l=len(a[0])
+med=[0]*l
+for i in range(n):
+     for j in range(l):
+         med[j]+=float(a[i][j])
+
+for i in range(l):
+    med[i]/=n
+#    med[i]=round(med[i], 4)
+
+user_color =  input().split()
+
+kk=[0]*n
+#for i in range(n):
+#    for j in range(l):
+#
+#        kk[i]+=(float(user_color[j])-float(a[i][j]))**2
+#    kk[i]=kk[i]**(1/2)
+#    kk[i]/=l
+#    kk[i] = kk[i] ** (1 / 2)
+
+for i in range(n):
+    x = float(user_color[0]) - float(a[i][0])
+    if x > 180:
+        x= 360 - x
+    y = float(user_color[1]) - float(a[i][1])
+    z = float(user_color[2]) - float(a[i][2])
+    kk[i] = x ** 2 + y**2 + z**2
+    #    kk[i]=kk[i]**(1/2)
+    kk[i] /= 3
+    kk[i] = kk[i] ** (1 / 2)
+
+#print(a)
+#print(d)
+#print(med)
+print(kk)
+m=500
+indd = 0
+for i in range(n):
+    if m > kk[i]:
+        m=kk[i]
+        indd=i
+print(m)
+print(indd)
